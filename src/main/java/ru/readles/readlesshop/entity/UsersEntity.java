@@ -17,7 +17,7 @@ public class UsersEntity {
 
     private String password;
 
-    private String role;
+    private String role = "USER";
     @OneToMany(mappedBy = "user")
     private List<LibraryEntity> libraries;
     @OneToMany(mappedBy = "user")
@@ -60,7 +60,4 @@ public class UsersEntity {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

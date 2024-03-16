@@ -19,7 +19,7 @@ public class UsersService {
                 throw new UserAlreadyException("Пользователь с таким логином уже существует!");
             }
         String role = usersEntity.getRole();
-        if(role!=null && !role.equals("user")){
+        if(role!=null && !role.equals("USER")){
             throw new UserAlreadyException("Тварь ли я дрожащая или право имею?");
         }
         return usersRepository.save(usersEntity);

@@ -3,6 +3,7 @@ package ru.readles.readlesshop.controller;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import ru.readles.readlesshop.entity.UsersEntity;
@@ -15,10 +16,11 @@ import ru.readles.readlesshop.service.UsersService;
 @RequestMapping("/user")
 public class UsersController {
 
-@Autowired
-private UsersService usersService;
-@PostMapping
-public ResponseEntity registration(@RequestBody UsersEntity users){
+    @Autowired
+    private UsersService usersService;
+
+    @PostMapping
+    public ResponseEntity registration(@RequestBody UsersEntity users) {
         try {
             usersService.registration(users);
             return ResponseEntity.ok("Пользователь успешно сохранён!");
@@ -26,24 +28,23 @@ public ResponseEntity registration(@RequestBody UsersEntity users){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     @GetMapping
-    public ResponseEntity getOneUser(@RequestParam Long id){
+    public ResponseEntity getOneUser(@RequestParam Long id) {
         try {
             return ResponseEntity.ok(usersService.getOneUser(id));
-        }
-        catch (UserNotFoundException e){
+        } catch (UserNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Пользователь не найден!");
         }
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id){
+    public ResponseEntity deleteUser(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(usersService.delete(id));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Сервер не смог запуститься!");
         }
     }
