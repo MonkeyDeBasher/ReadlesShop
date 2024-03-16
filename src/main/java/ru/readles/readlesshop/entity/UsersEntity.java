@@ -20,6 +20,8 @@ public class UsersEntity {
     private String role;
     @OneToMany(mappedBy = "user")
     private List<LibraryEntity> libraries;
+    @OneToMany(mappedBy = "user")
+    private List<CommentEntity> comment;
 
     public UsersEntity() {
     }

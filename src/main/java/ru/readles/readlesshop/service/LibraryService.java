@@ -38,7 +38,6 @@ public class LibraryService {
         UsersEntity user = usersRepository.findById(userId).orElseThrow(() -> new BookNotFoundException("Пользователь не найден"));
         List<LibraryEntity> libraryEntries = new ArrayList<>();
         libraryRepository.findAll().forEach(libraryEntries::add);
-
         List<BooksEntity> books = new ArrayList<>();
         for (LibraryEntity entry : libraryEntries) {
             if (entry.getUser().equals(user)) {

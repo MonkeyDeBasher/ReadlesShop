@@ -2,32 +2,29 @@ package ru.readles.readlesshop.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name="Library")
-public class LibraryEntity {
+@Table(name="Comment")
+public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_lib;
+    private Long id_comment;
 
     @ManyToOne
     @JoinColumn(name="id_user")
     private UsersEntity user;
+
     @ManyToOne
     @JoinColumn(name="id_book")
     private BooksEntity book;
 
-    public LibraryEntity(){
+    private String description;
 
+    public Long getId_comment() {
+        return id_comment;
     }
 
-    public Long getId_lib() {
-        return id_lib;
-    }
-
-    public void setId_lib(Long id_lib) {
-        this.id_lib = id_lib;
+    public void setId_comment(Long id_comment) {
+        this.id_comment = id_comment;
     }
 
     public UsersEntity getUser() {
@@ -44,5 +41,13 @@ public class LibraryEntity {
 
     public void setBook(BooksEntity book) {
         this.book = book;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

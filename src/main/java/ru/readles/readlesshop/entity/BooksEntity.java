@@ -24,6 +24,8 @@ public class BooksEntity {
     private String urlImg;
     @OneToMany(mappedBy = "book")
     private List<LibraryEntity> libraries;
+    @OneToMany(mappedBy = "book")
+    private List<CommentEntity> comment;
 
 
     public BooksEntity(){
