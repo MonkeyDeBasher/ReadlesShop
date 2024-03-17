@@ -14,20 +14,17 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(user.getRole().split(", "))
+        return Arrays.stream(user.getRole().split(","))
         .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
-
     public MyUserDetails(UsersEntity user) {
         this.user = user;
     }
-
     @Override
     public String getPassword() {
         return user.getPassword();
     }
-
     @Override
     public String getUsername() {
         return user.getLogin();

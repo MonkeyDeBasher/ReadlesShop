@@ -18,7 +18,7 @@ public class User {
         model.setId_user(entity.getId_user());
         model.setLogin(entity.getLogin());
         model.setEmail(entity.getEmail());
-        model.setRole("USER");
+        model.setRole(entity.getRole());
         return model;
     }
     public Long getId_user() {

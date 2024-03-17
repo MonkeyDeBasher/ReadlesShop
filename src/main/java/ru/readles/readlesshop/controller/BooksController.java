@@ -22,6 +22,7 @@ public class BooksController {
             return ResponseEntity.badRequest().body("Ошибка добавления");
         }
     }
+
     @GetMapping
     public ResponseEntity getBook(@RequestParam Long id){
         try {

@@ -1,5 +1,7 @@
 package ru.readles.readlesshop.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +15,14 @@ import ru.readles.readlesshop.repository.UsersRepository;
 import ru.readles.readlesshop.service.UsersService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UsersController {
 
     @Autowired
     private UsersService usersService;
 
     @PostMapping
-    public ResponseEntity registration(@RequestBody UsersEntity users) {
+    public ResponseEntity registration(@RequestBody UsersEntity users, HttpServletRequest request) {
         try {
             usersService.registration(users);
             return ResponseEntity.ok("Пользователь успешно сохранён!");

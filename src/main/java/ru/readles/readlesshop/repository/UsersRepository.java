@@ -4,7 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.readles.readlesshop.entity.UsersEntity;
 
-import java.util.Optional;
 
 @Repository
 public interface UsersRepository extends CrudRepository<UsersEntity,Long> {

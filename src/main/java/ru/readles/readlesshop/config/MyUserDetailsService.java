@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.readles.readlesshop.entity.UsersEntity;
 import ru.readles.readlesshop.repository.UserRepository;
-import ru.readles.readlesshop.repository.UsersRepository;
+
 
 import java.util.Optional;
 @Service
