@@ -3,7 +3,9 @@ package ru.readles.readlesshop.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import ru.readles.readlesshop.entity.UsersEntity;
-
+/**
+ * Здесь реализуются все методы UsersController
+ */
 public class User {
     private Long id_user;
     private String login;

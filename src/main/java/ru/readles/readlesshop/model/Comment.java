@@ -1,9 +1,6 @@
 package ru.readles.readlesshop.model;
 
-
-import ru.readles.readlesshop.entity.BooksEntity;
 import ru.readles.readlesshop.entity.CommentEntity;
-import ru.readles.readlesshop.entity.UsersEntity;
 
 import java.util.ArrayList;
 import java.util.List;
