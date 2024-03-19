@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.readles.readlesshop.DTO.UserRegisterDTO;
 import ru.readles.readlesshop.entity.UsersEntity;
 import ru.readles.readlesshop.exception.UserAlreadyException;
 import ru.readles.readlesshop.exception.UserNotFoundException;
@@ -22,25 +24,25 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping
-    public ResponseEntity registration(@RequestBody UsersEntity users, HttpServletRequest request) {
+    public ResponseEntity registration(@Validated @RequestBody UserRegisterDTO userRegisterDTO) {
         try {
-            usersService.registration(users);
+            usersService.registration(userRegisterDTO);
             return ResponseEntity.ok("Пользователь успешно сохранён!");
         } catch (UserAlreadyException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @GetMapping
-    public ResponseEntity getOneUser(@RequestParam Long id) {
-        try {
-            return ResponseEntity.ok(usersService.getOneUser(id));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Пользователь не найден!");
-        }
-    }
+//    @GetMapping
+//    public ResponseEntity getOneUser(@RequestParam Long id) {
+//        try {
+//            return ResponseEntity.ok(usersService.getOneUser(id));
+//        } catch (UserNotFoundException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body("Пользователь не найден!");
+//        }
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id) {

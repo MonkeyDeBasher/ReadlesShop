@@ -7,7 +7,9 @@ import ru.readles.readlesshop.entity.CommentEntity;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Интерфейс, который реализует запросы к таблице Comment
+ */
 @Repository
 public interface CommentRepository extends CrudRepository<CommentEntity, Long> {
     List<CommentEntity> findByBook(BooksEntity book);

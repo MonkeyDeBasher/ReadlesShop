@@ -7,6 +7,9 @@ import ru.readles.readlesshop.entity.LibraryEntity;
 import ru.readles.readlesshop.entity.UsersEntity;
 
 import java.util.Optional;
+/**
+ * Интерфейс, который реализует запросы к таблице Library
+ */
 @Repository
 public interface LibraryRepository extends CrudRepository<LibraryEntity, Long> {
     Optional<LibraryEntity> findByUserAndBook(UsersEntity user, BooksEntity book);

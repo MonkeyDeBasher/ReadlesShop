@@ -36,10 +36,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 username = jwtUtils.getLogin(jwt);
             }
             catch (ExpiredJwtException e){
-                log.debug("Время жизни токена вышло");
+                System.out.println("Время жизни токена вышло");
             }
             catch (SignatureException e){
-                log.debug("Время + усердие, но не в подмене JWT токена");
+                System.out.println("Время + усердие, но не в подмене JWT токена");
             }
         }
         if(username!= null && SecurityContextHolder.getContext().getAuthentication() == null){
