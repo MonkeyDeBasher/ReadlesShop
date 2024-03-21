@@ -1,10 +1,18 @@
 package ru.readles.readlesshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name="Books")
 public class BooksEntity {
     @Id
@@ -22,67 +30,13 @@ public class BooksEntity {
     private Integer price;
 
     private String urlImg;
-    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    @OneToMany(mappedBy = "id_lib")
     private List<LibraryEntity> libraries;
-    @OneToMany(mappedBy = "book")
+    @JsonIgnore
+    @OneToMany(mappedBy = "id_comment")
     private List<CommentEntity> comment;
-
-
-    public BooksEntity(){
-
-    }
-    public void setUrlImg(String urlImg) {
-        this.urlImg = urlImg;
-    }
-    public String getUrlImg() {
-        return urlImg;
-    }
-    public Long getId_book() {
-        return id_book;
-    }
-
-    public void setId_book(Long id_book) {
-        this.id_book = id_book;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
+    @JsonIgnore
+  @OneToMany(mappedBy = "id_vote")
+    private List<RatingBookEntity> vote;
 }

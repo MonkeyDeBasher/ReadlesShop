@@ -1,8 +1,11 @@
 package ru.readles.readlesshop.DTO;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class JwtRequestDTO {
     private String login;
     private String password;

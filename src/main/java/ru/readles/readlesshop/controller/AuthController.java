@@ -1,8 +1,10 @@
 package ru.readles.readlesshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,20 +31,11 @@ public class AuthController {
     private AuthService authService;
     @PostMapping("/auth")
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequestDTO authRequest){
-//        try {
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword()));
-//        }
-//        catch (BadCredentialsException e){
-//            return new ResponseEntity<>(new AppErrorException(HttpStatus.UNAUTHORIZED.value(),"неправильный логин или пароль"), HttpStatus.UNAUTHORIZED);
-//        }
-//        UserDetails userDetails = usersService.loadUserByUsername(authRequest.getLogin());
-//        String token = jwtUtils.generation(userDetails);
-//        new JwtResponseDTO(token);
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword()));
             return ResponseEntity.ok(new JwtResponseDTO(authService.auth(authRequest)));
-        } catch (AppErrorException e) {
-            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.badRequest().body("Status: "+ HttpStatus.UNAUTHORIZED.value() + "\nReason: неправильный логин или пароль");
         }
     }
 }

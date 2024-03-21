@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.readles.readlesshop.entity.LibraryEntity;
 import ru.readles.readlesshop.exception.BookNotFoundException;
 import ru.readles.readlesshop.service.LibraryService;
-import ru.readles.readlesshop.service.UsersService;
 
 @RestController
 @RequestMapping("/library")
@@ -15,9 +14,10 @@ public class LibraryController {
     private LibraryService libraryService;
 
     @PostMapping
-    public ResponseEntity createLib(LibraryEntity libraryEntity, @RequestParam Long userId, @RequestParam Long bookId){
+    public ResponseEntity createLib(@RequestParam Long userId, @RequestParam Long bookId){
         try {
-            return ResponseEntity.ok(libraryService.createLib(libraryEntity, userId, bookId));
+            libraryService.createLib(userId,bookId);
+            return ResponseEntity.ok("Книга успешно добавлена  библеотеку");
         }
         catch(BookNotFoundException e){
             return ResponseEntity.badRequest().body(e.getMessage());

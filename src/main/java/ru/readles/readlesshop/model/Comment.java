@@ -1,19 +1,23 @@
 package ru.readles.readlesshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.readles.readlesshop.entity.CommentEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Comment {
     private Long id_comment;
     private Long user;
     private Long book;
 
     private String description;
-    public Comment(){
-
-    }
     public static List<Comment> toModel(List<CommentEntity> entities) {
         List<Comment> commentModels = new ArrayList<>();
         for (CommentEntity entity : entities) {
@@ -27,36 +31,4 @@ public class Comment {
         return commentModels;
     }
 
-    public Long getId_comment() {
-        return id_comment;
-    }
-
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
-    }
-
-    public Long getBook() {
-        return book;
-    }
-
-    public void setBook(Long book) {
-        this.book = book;
-    }
-
-    public void setId_comment(Long id_comment) {
-        this.id_comment = id_comment;
-    }
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

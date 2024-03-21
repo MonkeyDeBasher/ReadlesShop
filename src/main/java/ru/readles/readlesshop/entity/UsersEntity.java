@@ -1,10 +1,14 @@
 package ru.readles.readlesshop.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name="Users")
 public class UsersEntity {
     @Id
@@ -17,44 +21,15 @@ public class UsersEntity {
 
     private String password;
 
+    private String status;
+
+    private String description;
+
     private String role = "USER";
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "id_lib", fetch = FetchType.LAZY)
     private List<LibraryEntity> libraries;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "id_comment", fetch = FetchType.LAZY)
     private List<CommentEntity> comment;
-
-    public UsersEntity() {
-    }
-    public String getLogin() {
-        return login;
-    }
-
-    public Long getId_user() {
-        return id_user;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
+    @OneToMany(mappedBy = "id_vote", fetch = FetchType.LAZY)
+    private List<RatingBookEntity> vote;
 }

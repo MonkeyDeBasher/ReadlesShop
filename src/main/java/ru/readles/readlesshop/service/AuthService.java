@@ -1,14 +1,13 @@
 package ru.readles.readlesshop.service;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import ru.readles.readlesshop.DTO.JwtRequestDTO;
-import ru.readles.readlesshop.DTO.JwtResponseDTO;
 import ru.readles.readlesshop.config.MyUserDetailsService;
 import ru.readles.readlesshop.exception.AppErrorException;
 import ru.readles.readlesshop.utils.JwtUtils;

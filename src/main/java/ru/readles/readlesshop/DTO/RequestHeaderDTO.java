@@ -6,6 +6,6 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class JwtResponseDTO {
-    private String token;
+public class RequestHeaderDTO {
+    private String Authorization;
 }
